@@ -39,6 +39,12 @@ function addTask() {
   doneButton.setAttribute('aria-label', 'Marcar tarefa como concluída');
   doneButton.innerHTML = '<strong>✔</strong>'; // Alterado para um check ✔ ao invés de "Ok"
 
+  // Criando o botão de edição
+  const editButton = document.createElement('button');
+  editButton.classList.add('edit');
+  editButton.setAttribute('aria-label', 'Editar tarefa');
+  editButton.innerHTML = '<strong>✏️</strong>'; // Ícone de lápis para editar
+
   // Criando o botão de exclusão
   const deleteButton = document.createElement('button');
   deleteButton.classList.add('delete');
@@ -50,6 +56,25 @@ function addTask() {
     li.classList.toggle('done');
   });
 
+  // Evento para editar a tarefa
+  editButton.addEventListener('click', function() {
+    const currentText = taskSpan.textContent;
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = currentText;
+    li.insertBefore(input, taskSpan);
+    li.removeChild(taskSpan);
+    input.focus();
+
+    input.addEventListener('keypress', function(event) {
+      if (event.key === 'Enter') {
+        taskSpan.textContent = input.value;
+        li.insertBefore(taskSpan, input);
+        li.removeChild(input);
+      }
+    });
+  });
+
   // Evento para excluir a tarefa
   deleteButton.addEventListener('click', function() {
     taskList.removeChild(li);
@@ -58,6 +83,7 @@ function addTask() {
   // Adicionando os elementos ao item da lista
   li.appendChild(taskSpan);
   li.appendChild(doneButton);
+  li.appendChild(editButton); // Adicionando o botão de editar
   li.appendChild(deleteButton);
 
   // Adicionando o item à lista

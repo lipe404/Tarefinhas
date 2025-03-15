@@ -28,7 +28,6 @@ body{
     text-align: center;
     flex-direction: column;
     overflow-y: auto;
-    /* Código para aumentar o botão de adicionar tarefas: display: flex;*/
 }
 
 .container:hover{
@@ -49,8 +48,9 @@ h1{
     flex-shrink: 0;
     font-family: 'Poppins', sans-serif;
 
-     /* Criando um gradiente de cor no texto */
+    /* Criando um gradiente de cor no texto */
     background: linear-gradient(135deg, #135fb6, #135fb6, #135fb6);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
@@ -122,6 +122,13 @@ button{
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button.edit {
+    background-color: #3d55bd;
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 14px;
 }
 
 button:hover{
