@@ -1,0 +1,199 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*Estilização geral da página*/
+body{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #6b9af1, #c3c6cc);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+/*Container principal */
+.container{
+    background: linear-gradient(135deg, #9489f1, #9f96f1);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    width:30%;
+    height: max-content;
+    text-align: center;
+    flex-direction: column;
+    overflow-y: auto;
+    /* Código para aumentar o botão de adicionar tarefas: display: flex;*/
+}
+
+.container:hover{
+    transform: scale(1.001);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease-in-out;
+}
+
+h1{
+    font-size: 32px;
+    margin-bottom: 20px;
+    font-weight: 900;
+    color: #135fb6;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    letter-spacing: 3px;
+    font-weight: bold;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    font-family: 'Poppins', sans-serif;
+
+     /* Criando um gradiente de cor no texto */
+    background: linear-gradient(135deg, #135fb6, #135fb6, #135fb6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /*Sombra aprimorada para efeito 3D */
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+
+    /* Pequena animação de transição para suavizar efeitos */
+    transition: all 0.3s ease-in-out;
+}
+
+h1:hover {
+    transform: scale(1.01); /* Pequeno aumento para destacar */
+    text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+input{
+    width: 100%;
+    padding: 14px;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 15px;
+
+    /* Estilo da borda aprimorado */
+    border: 2px solid transparent;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.568);
+    backdrop-filter: blur(8px);
+
+    /* Borda com gradiente */
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2));                
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    outline: none;
+    color: rgba(0, 0, 0, 0.808);
+    transition: all 0.4s ease-in-out;
+}
+
+input:hover{
+    border-color: transparent;
+    box-shadow: 0 0 12px rgba(78, 166, 248, 0.6);
+    transform: scale(1.02);
+}
+
+/*Efeito ao focar no input */
+input:focus{
+    border-color: transparent;
+    box-shadow: 0 0 12px rgba(78, 166, 248, 0.6);
+    transform: scale(1.02);
+}
+
+/* Placeholder estilizado */
+input::placeholder{
+    color: rgba(12, 12, 12, 0.7);
+    font-style: italic;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Reduz a opacidade do placeholder ao focar */
+input:focus::placeholder{
+    opacity: 0.5;
+}
+
+button{
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color:#5c79f8;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover{
+    background-color: #4ea6f8;
+    transform: scale(1.05);
+}
+
+ul{
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    border-color: 1px solid rgba(124, 118, 118, 0.3);
+    transition: background 0.3s;
+}
+
+li:hover{
+    background-color: rgba(255, 255, 255, 0.3);
+    scale: 1.001;
+}
+
+li.done{
+    text-decoration: line-through;
+    color: #aaa7cc;
+    opacity: 0.7;
+}
+
+button.done{
+    background-color: #5c79f8;
+    padding: 8px 12px;
+    margin-left: auto;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+button.delete{
+    background-color: #eb5564;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+button.done:hover{
+    background-color: #4ea6f8;
+}
+
+button.delete:hover{
+    background-color: #c82333;
+}
+
+@media (max-width: 600px) {
+    .container{
+        width: 95%; /* Ajustar a largura em telas menores */
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 24px; /* Reduzir o tamanho da fonte em telas pequenas */
+    }
+
+    button {
+        padding: 10px 15px; /* Ajustar padding em telas pequenas */
+    }
+}
