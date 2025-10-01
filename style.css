@@ -4,82 +4,127 @@
   box-sizing: border-box;
 }
 
+/* Tokens de design (temas) */
+:root {
+  --radius-lg: 20px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --space-1: 8px;
+  --space-2: 12px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --shadow-1: 0 6px 20px rgba(0, 0, 0, 0.2);
+  --shadow-2: 0 8px 26px rgba(0, 0, 0, 0.28);
+
+  --bg-app: linear-gradient(135deg, #6b9af1, #c3c6cc);
+  --bg-card: linear-gradient(135deg, rgba(148, 137, 241, 0.9), rgba(159, 150, 241, 0.9));
+  --text-primary: #0f1b2d;
+  --text-secondary: rgba(15, 27, 45, 0.75);
+  --brand: #5c79f8;
+  --brand-strong: #3d55bd;
+  --accent: #4ea6f8;
+  --success: #25c27a;
+  --danger: #eb5564;
+  --danger-strong: #c82333;
+  --surface: rgba(255, 255, 255, 0.9);
+  --surface-soft: rgba(255, 255, 255, 0.2);
+  --ring: rgba(78, 166, 248, 0.6);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-app: linear-gradient(135deg, #0f1430, #1d1f2b);
+    --bg-card: linear-gradient(135deg, rgba(46, 45, 85, 0.6), rgba(63, 66, 121, 0.6));
+    --text-primary: #e9ecf2;
+    --text-secondary: rgba(233, 236, 242, 0.8);
+    --surface: rgba(255, 255, 255, 0.08);
+    --surface-soft: rgba(255, 255, 255, 0.06);
+    --shadow-1: 0 6px 20px rgba(0, 0, 0, 0.4);
+    --shadow-2: 0 8px 26px rgba(0, 0, 0, 0.5);
+  }
+}
+
 /*Estilização geral da página*/
 body {
   text-align: center;
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #6b9af1, #c3c6cc);
+  background: var(--bg-app);
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   padding: 20px;
+  color: var(--text-primary);
 }
 
 /*Container principal */
 .container {
-  background: linear-gradient(135deg, #9489f1, #9f96f1);
-  padding: 25px;
-  border-radius: 20px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-  width: 30%;
+  background: var(--bg-card);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+  width: 100%;
+  max-width: 520px;
   height: max-content;
-  text-align: center;
-  flex-direction: column;
-  overflow-y: auto;
-  transition: transform 0.3s ease-in-out;
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
+  text-align: left;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-auto-rows: auto;
+  gap: var(--space-2) var(--space-2);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .container:hover {
-  transform: scale(1.01);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-2);
 }
 
 h1 {
-  font-size: 32px;
-  margin-bottom: 20px;
+  font-size: 28px;
+  margin-bottom: var(--space-2);
   font-weight: 900;
-  color: #135fb6;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-  letter-spacing: 3px;
+  color: var(--text-primary);
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  transition: all 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+  grid-column: 1 / -1;
 }
 
 h1:hover {
-  transform: scale(1.01); /* Pequeno aumento para destacar */
-  text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
+  transform: translateY(-1px);
+  text-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
 }
 
 input {
   width: 100%;
-  padding: 14px;
-  font-size: 18px;
-  margin-bottom: 15px;
+  padding: 14px 16px;
+  font-size: 16px;
+  margin-bottom: 0;
   border: 2px solid transparent;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.8);
+  border-radius: var(--radius-md);
+  background: var(--surface);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   outline: none;
-  color: rgba(0, 0, 0, 0.8);
-  transition: all 0.4s ease-in-out;
+  color: var(--text-primary);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
 input:hover,
 input:focus {
   border-color: transparent;
-  box-shadow: 0 0 12px rgba(78, 166, 248, 0.6);
-  transform: scale(1.02);
+  box-shadow: 0 0 0 4px var(--ring);
+  transform: translateY(-1px);
 }
 
 /* Placeholder estilizado */
 input::placeholder {
-  color: rgba(12, 12, 12, 0.7);
+  color: var(--text-secondary);
   font-style: italic;
-  transition: all 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
 }
 
 /* Reduz a opacidade do placeholder ao focar */
@@ -89,93 +134,145 @@ input:focus::placeholder {
 
 /* Estilização dos botões */
 button {
-  padding: 12px 20px;
+  padding: 12px 16px;
   font-size: 16px;
-  background-color: #5c79f8;
+  background: var(--brand);
   color: #fff;
   border: none;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Botão principal de adicionar (ícone +) circular */
+#addButton {
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border-radius: 999px;
+  background: radial-gradient(100% 100% at 100% 0, #7aa2ff 0%, var(--brand) 60%);
+  grid-column: 2 / 3;
 }
 
 button.edit {
-  background-color: #3d55bd;
-  padding: 8px 10px;
-  border-radius: 6px;
+  background-color: var(--brand-strong);
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 999px;
   font-size: 14px;
 }
 
 button:hover {
-  background-color: #4ea6f8;
-  transform: scale(1.05);
+  background-color: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(78, 166, 248, 0.35);
 }
 
 /*Estilização da lista de tarefas*/
 ul {
   list-style: none;
   padding: 0;
-  margin-top: 15px;
-  flex-grow: 1;
+  margin-top: var(--space-2);
+  grid-column: 1 / -1;
+  max-height: 55vh;
   overflow-y: auto;
 }
 
 li {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
   align-items: center;
-  padding: 12px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.2);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  transition: background 0.3s;
+  gap: var(--space-2);
+  padding: 12px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-soft);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: background 0.3s, transform 0.2s, box-shadow 0.25s;
 }
 
 li:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
 }
 
 li.done {
   text-decoration: line-through;
   color: #aaa7cc;
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 /*Estilização dos botões de ação*/
 button.done {
-  background-color: #5c79f8;
-  padding: 8px 12px;
+  background-color: var(--success);
+  width: 36px;
+  height: 36px;
+  padding: 0;
   margin-left: auto;
-  border-radius: 6px;
+  border-radius: 999px;
   font-size: 14px;
 }
 
 button.done:hover {
-  background-color: #4ea6f8;
+  background-color: #1ea86a;
 }
 
 button.delete {
-  background-color: #eb5564;
-  padding: 8px 12px;
-  border-radius: 6px;
+  background-color: var(--danger);
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 999px;
   font-size: 14px;
 }
 
 button.delete:hover {
-  background-color: #c82333;
+  background-color: var(--danger-strong);
+}
+
+/* Acessibilidade: foco visível em todos os botões */
+button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--ring);
+}
+
+/* Scrollbar estilizada (Webkit) */
+ul::-webkit-scrollbar {
+  width: 10px;
+}
+ul::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 999px;
+}
+ul::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #7aa2ff, var(--brand));
+  border-radius: 999px;
 }
 
 @media (max-width: 600px) {
   .container {
-    width: 95%; /* Ajustar a largura em telas menores */
-    padding: 20px;
+    width: 95%;
+    padding: var(--space-3);
+    grid-template-columns: 1fr auto;
+    gap: var(--space-2);
   }
 
   h1 {
-    font-size: 24px; /* Reduzir o tamanho da fonte em telas pequenas */
+    font-size: 24px;
   }
 
-  button {
-    padding: 10px 15px; /* Ajustar padding em telas pequenas */
+  #addButton {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* Redução de movimentos para acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
   }
 }
